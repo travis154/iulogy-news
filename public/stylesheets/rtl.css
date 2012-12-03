@@ -1,0 +1,19 @@
+@charset "utf-8";
+@font-face {
+	font-family: 'MV Faseyha';
+	src: url('MVFaseyha.otf') format('opentype');
+	src: local('MV Faseyha'), url('MVFaseyha.otf') format("opentype");
+}
+@font-face {
+	font-family: 'MV Waheed';
+	src: url('MVWaheed.otf') format('opentype');
+	src: local('MV Waheed'), url('MVWaheed.otf') format("opentype");
+}
+body,p,header,section,h1,h2,h3,h4,h5,h6,div,button {
+ font-family: 'MV Faseyha'
+}
+body {
+  direction: rtl;
+ 
+}
+

@@ -1,0 +1,21 @@
+section.news-section
+	section.news-section-header
+		img(src='/images/' + logo, style='height:33px')
+	ul
+		li
+			a(href="")
+				section(style='position:relative').hover-board
+					img(src=main.images.thumb)
+					h1.heading3=main.title
+		-each news, i in others
+			-_class = i > 4 ? "hide" : ""
+				li.news-item(class=_class)
+					div(href="").row
+						div.span5
+							-var img = news.images.sizes ? news.images.sizes[3].source : ""
+								span.title(data-article=news.article, data-img=img)=news.title
+						div.span1
+							img(src=news.images.thumb)
+	section.toggle-display(data-action='expand')
+		span އިތުރު ސުރުޚީތައް
+
