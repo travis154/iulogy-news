@@ -1,4 +1,7 @@
 section.news.hide(style='border-right:solid 5px yellowGreen; padding-right:7px')
-	h3(style='cursor:pointer')=title
-	img(src=img)
-	article!=article
+	-if(typeof title != 'undefined')
+		h3(style='cursor:pointer')=title
+	-if(typeof img != 'undefined')
+		img(src=img)
+	-if(typeof article != 'undefined')
+		article!=article

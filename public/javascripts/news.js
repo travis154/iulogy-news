@@ -67,15 +67,16 @@ $(function(){
 			$(this).attr('data-action', 'expand');
 		}
 	});
-	$('body').on('click', '.title', function(){
+	$('body').on('click', '.sub-news', function(){
+		console.log('sdf')
 		var self = $(this);
 		var title = self.text();
 		var article = self.attr('data-article');
 		var img = self.attr('data-img');
 		var el = $(jade.render('news', {title:title, article:article, img:img}));
-		var parent = self.parent().parent();
-		parent.addClass('hide');
-		parent.parent().append(el);
+		var parent = self;
+		self.addClass('hide');
+		self.parent().append(el);
 		el.slideDown();
 	});
 	$('body').on('click', '.news h3', function(){
@@ -85,4 +86,18 @@ $(function(){
 			self.parent().parent().find('.hide').removeClass('hide');
 		})
 	});
+	$('body').on('click', '.main-news', function(){
+		var self = $(this);
+		var toggle = self.hasClass('expanded');
+		if(toggle == true){
+			self.find('.news').slideUp();
+			self.removeClass('expanded');
+			return;
+		}
+		var article = self.attr('data-article');
+		var el = $(jade.render('news', {article:article}));
+		$(this).append(el);
+		el.slideDown();
+		self.addClass('expanded');
+	})
 })
