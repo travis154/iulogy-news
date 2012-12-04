@@ -48,19 +48,12 @@ li {
   -moz-transition: background 0.2s ease-out;
   -webkit-transition: background 0.2s ease-out;
   -o-transition: background 0.2s ease-out;
+  font-weight: normal;
   bottom: 0px;
 }
 .hover-board:hover h1 {
   background: rgba(255,255,255,0.7);
   color: #000;
-}
-.news-section-header {
-  text-align: center;
-  padding: 5px 0px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: solid 1px #c0c0c0;
-  border-bottom: none;
 }
 .toggle-display {
   cursor: pointer;
@@ -80,4 +73,17 @@ li {
 .toggle-display:hover {
   background: yellowGreen;
   box-shadow: 0px 3px 2px rgba(0,0,0,0.3) inset;
+}
+.news-section-header {
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #fff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #fff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #fff, #f2f2f2);
+  background-image: linear-gradient(to bottom, #fff, #f2f2f2);
+  background-repeat: repeat-x;
+  text-align: center;
+  padding: 5px 0px;
+  border: solid 1px #c0c0c0;
+  border-bottom: none;
 }

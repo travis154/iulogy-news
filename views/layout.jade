@@ -8,10 +8,18 @@ html(lang='dv')
 		script(src='/javascripts/jquery.js')
 		script(src='/js/templates.js')
 		script(src='/javascripts/news.js')
+		script(src='/javascripts/fastclick.js')
 		//script setTimeout(function(){window.location.reload(true)},200)
 	body
 		section.container
 			section.row
-				section#stuff.span6
-				section#stuff2.span6
+				section.navbar.navbar-inner
+					ul.nav.nav-pills.pull-right
+						li
+							a(href='') ޚަބަރު
+						li
+							a(href='') ފޮޓޯ
+			section.row
+				section#stuff(style='margin-left:0;width:474px;').span6
+				section#stuff2(style='margin-left:0;float:right;width:474px;').span6
 

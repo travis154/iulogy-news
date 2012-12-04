@@ -53,6 +53,7 @@
 })(jQuery, window, jade);
 
 $(function(){
+	new FastClick(document.body);
 	$("body").on('click', '.toggle-display', function(){
 		var action = $(this).attr('data-action');
 		console.log(action)
