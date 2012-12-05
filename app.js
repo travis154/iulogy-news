@@ -20,6 +20,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(jade_browser('/js/templates.js', '**', {root: __dirname + '/views/components', cache:false}));
+  app.use(express.compress())
   app.use(express.favicon());
   //app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -95,8 +96,8 @@ function getData(req,fn){
 		var build = {
 			content:{}
 		};
-		var sources_build = req.query.sources ? req.query.sources.split(',') : sources;
-		var limit = req.query.limit ? req.query.limit -1 : 5;
+		var sources_build = sources.reverse();
+		var limit = 20;
 		
 		//remove empty values
 		sources_build.clean("");
@@ -113,7 +114,6 @@ function getData(req,fn){
 				data.forEach(function(e){
 					var doc = JSON.parse(e);
 					parsed.push(doc);
-					console.log(doc.title);
 				})
 				build.content[source] = parsed;
 				return fn(null);
