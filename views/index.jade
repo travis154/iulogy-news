@@ -1,3 +1,48 @@
 extends layout
 
 block content
+	section#stuff(style='margin-left:0;width:460px;').span6
+		-each source,i in column1
+			section.news-section
+				section.news-section-header
+					img(src='/images/' + source.logo, style='height:33px')
+				ul
+					li(style='cursor:pointer', data-article=source.main.article).main-news
+						section
+							section(style='position:relative').hover-board
+								img(src=source.main.images.thumb)
+								h1.heading3=source.main.title
+					-each news, i in source.others
+						-_class = i > 4 ? "hide" : ""
+							li.news-item(class=_class)
+								-var img = news.images.sizes ? news.images.sizes[3].source : ""
+									div(data-article=news.article, data-img=img).row.sub-news
+										div.span5
+											span.title=news.title
+										div.span1
+											img(src=news.images.thumb)
+				section.toggle-display(data-action='expand')
+					span އިތުރު ސުރުޚީތައް
+	section#stuff2(style='margin-left:0;float:right;width:460px;').span6
+		-each source,i in column2
+			section.news-section
+				section.news-section-header
+					img(src='/images/' + source.logo, style='height:33px')
+				ul
+					li(style='cursor:pointer', data-article=source.main.article).main-news
+						section
+							section(style='position:relative').hover-board
+								img(src=source.main.images.thumb)
+								h1.heading3=source.main.title
+					-each news, i in source.others
+						-_class = i > 4 ? "hide" : ""
+							li.news-item(class=_class)
+								-var img = news.images.sizes ? news.images.sizes[3].source : ""
+									div(data-article=news.article, data-img=img).row.sub-news
+										div.span5
+											span.title=news.title
+										div.span1
+											img(src=news.images.thumb)
+				section.toggle-display(data-action='expand')
+					span އިތުރު ސުރުޚީތައް
+

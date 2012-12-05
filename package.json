@@ -9,6 +9,8 @@
     "express": "3.0.0",
     "jade": "*",
     "stylus": "*",
-    "jade-browser": "0.0.9"
+    "jade-browser": "0.0.9",
+    "async": "~0.1.22",
+    "redis": "~0.8.2"
   }
 }
