@@ -126,7 +126,7 @@ function getData(req,fn){
 				data.forEach(function(e){
 					var doc = JSON.parse(e);
 					delete doc.article;
-					console.log(doc);
+					doc.url = encodeURIComponent(doc.url);
 					parsed.push(doc);
 				})
 				build.content[source] = parsed;

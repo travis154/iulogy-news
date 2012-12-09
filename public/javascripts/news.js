@@ -19,7 +19,7 @@ $(function(){
 		var title = self.text();
 		var img = self.attr('data-img');
 		var source = self.attr('data-source');
-		var url = encodeURIComponent(self.attr('data-url'));
+		var url =self.attr('data-url');
 		console.log(url)
 		getArticle(source, url, function(data){
 			var el = $(jade.render('news', {title:title, article:data.data, img:img}));
