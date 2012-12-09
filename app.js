@@ -83,6 +83,9 @@ app.get('/article/:source/:url', function(req,res){
 	 	if(err){
 	 		return res.json({error:"An error occured"});
 	 	}
+	 	if(data == null){
+	 		return res.json({error:"Article not found!"});
+	 	}
 	 	var obj = {};
  		obj.data = data;
  		res.json(obj);
