@@ -65,10 +65,10 @@ app.get('/', function(req, res){
 			
 			}
 			if(column == 1){
-				column2.push({main:main, others:src, logo:source + ".png"});
+				column2.push({source:source, main:main, others:src, logo:source + ".png"});
 				column = 2;
 			}else{
-				column1.push({main:main, others:src, logo:source + ".png"});
+				column1.push({source:source, main:main, others:src, logo:source + ".png"});
 				column = 1;
 			}
 		}

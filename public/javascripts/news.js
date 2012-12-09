@@ -14,21 +14,26 @@ $(function(){
 		}
 	});
 	$('body').on('click', '.sub-news', function(){
-		console.log('sdf')
 		var self = $(this);
+		self.css('opacity', .2);
 		var title = self.text();
-		var article = self.attr('data-article');
 		var img = self.attr('data-img');
-		var el = $(jade.render('news', {title:title, article:article, img:img}));
-		var parent = self;
-		self.addClass('hide');
-		self.parent().append(el);
-		el.slideDown();
+		var source = self.attr('data-source');
+		var url = encodeURIComponent(self.attr('data-url'));
+		console.log(url)
+		getArticle(source, url, function(data){
+			var el = $(jade.render('news', {title:title, article:data.data, img:img}));
+			var parent = self;
+			self.addClass('hide');
+			self.parent().append(el);
+			el.slideDown();
+		});
 	});
 	$('body').on('click', '.news h3', function(){
 		var self = $(this);
 		$(this).parent().slideUp(function(){
 			//self.remove();
+			self.parent().parent().find('.hide').css('opacity', 1);
 			self.parent().parent().find('.hide').removeClass('hide');
 		})
 	});
@@ -45,5 +50,10 @@ $(function(){
 		$(this).append(el);
 		el.slideDown();
 		self.addClass('expanded');
-	})
-})
+	});
+	
+});
+
+function getArticle(source, url, fn){
+	$.getJSON('/article/' + source + '/' + url, fn);
+}

@@ -38,7 +38,7 @@ block content
 						-_class = i > 4 ? "hide" : ""
 							li.news-item(class=_class)
 								-var img = news.images.sizes ? news.images.sizes[3].source : ""
-									div(data-article=news.article, data-img=img).row.sub-news
+									div(data-img=img, data-source=source.source, data-url=news.url).row.sub-news
 										div.span5
 											span.title=news.title
 										div.span1
