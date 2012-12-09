@@ -51,7 +51,7 @@ app.get('/', function(req, res){
 				}
 			}
 			//set large image for main image
-			if(typeof main.images == 'object'){
+			if(main && typeof main.images == 'object'){
 				for(var i = 0; i < main.images.sizes.length; i++){
 					if( main.images.sizes[i].width <= 480 && main.images.sizes[i].width > 320){
 						main.images.thumb = main.images.sizes[i].source;
@@ -76,6 +76,18 @@ app.get('/', function(req, res){
 	})
 });
 
+app.get('/article/:source/:url', function(req,res){
+	var source = req.params.source
+	 ,  url = req.params.url;
+	 client.hget(source, url, function(err, data){
+	 	if(err){
+	 		return res.json({error:"An error occured"});
+	 	}
+	 	var obj = {};
+ 		obj.data = data;
+ 		res.json(obj);
+	 });
+});
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
@@ -113,6 +125,8 @@ function getData(req,fn){
 				var parsed = [];
 				data.forEach(function(e){
 					var doc = JSON.parse(e);
+					delete doc.article;
+					console.log(doc);
 					parsed.push(doc);
 				})
 				build.content[source] = parsed;
