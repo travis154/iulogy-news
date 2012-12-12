@@ -1,0 +1,9 @@
+background: -webkit-linear-gradient(-45deg, slateGray 22px, #D9ECFF 23px, #D9ECFF 24px, transparent 24px, transparent 67px, #D9ECFF 67px, #D9ECFF 69px, transparent 69px), -webkit-linear-gradient(-135deg, slateGray 22px, #D9ECFF 22px, #D9ECFF 24px, transparent 24px, transparent 67px, #D9ECFF 67px, #D9ECFF 69px, transparent 69px)0 64px;
+background-size: 7px 78px;
+background-color: slateGray;
+padding: 13px 0px;
+
+background: -webkit-linear-gradient(-45deg, slateGray -25px, #D9ECFF 7px, #D9ECFF 44px, transparent 21px, transparent 67px, #D9ECFF 67px, #D9ECFF 69px, transparent 69px), -webkit-linear-gradient(-135deg, slateGray 22px, #D9ECFF 22px, #D9ECFF 24px, transparent 24px, transparent 67px, #D9ECFF 67px, #D9ECFF 69px, transparent 69px)0 64px;
+background-size: 7px 78px;
+background-color: slateGray;
+padding: 13px 0px;
