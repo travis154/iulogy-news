@@ -87,7 +87,7 @@ app.get('/article/:source/:url', function(req,res){
 	 		return res.json({error:"Article not found!"});
 	 	}
 	 	var obj = {};
- 		obj.data = data;
+ 		obj.data = JSON.parse(data);
  		res.json(obj);
 	 });
 });

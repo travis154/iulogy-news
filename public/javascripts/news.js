@@ -22,7 +22,7 @@ $(function(){
 		var url =self.attr('data-url');
 		console.log(url)
 		getArticle(source, url, function(data){
-			var el = $(jade.render('news', {title:title, article:data.data, img:img}));
+			var el = $(jade.render('news', {title:title, article:data.data.article, img:img}));
 			var parent = self;
 			self.addClass('hide');
 			self.parent().append(el);
