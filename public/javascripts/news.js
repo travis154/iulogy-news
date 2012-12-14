@@ -20,7 +20,6 @@ $(function(){
 		var img = self.attr('data-img');
 		var source = self.attr('data-source');
 		var url =self.attr('data-url');
-		console.log(url)
 		getArticle(source, url, function(data){
 			var el = $(jade.render('news', {title:title, article:data.data.article, img:img}));
 			var parent = self;
@@ -40,16 +39,19 @@ $(function(){
 	$('body').on('click', '.main-news', function(){
 		var self = $(this);
 		var toggle = self.hasClass('expanded');
+		var source = self.attr('data-source');
+		var url =self.attr('data-url');
 		if(toggle == true){
 			self.find('.news').slideUp();
 			self.removeClass('expanded');
 			return;
 		}
-		var article = self.attr('data-article');
-		var el = $(jade.render('news', {article:article}));
-		$(this).append(el);
-		el.slideDown();
-		self.addClass('expanded');
+		getArticle(source, url, function(data){
+			var el = $(jade.render('news', {article:data.data.article}));
+			self.append(el);
+			el.slideDown();
+			self.addClass('expanded');
+		});
 	});
 	
 });

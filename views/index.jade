@@ -7,7 +7,8 @@ block content
 				section.news-section-header
 					img(src='/images/' + source.logo, style='height:33px')
 				ul
-					li(style='cursor:pointer', data-article=source.main.article).main-news
+					-console.log(source)
+					li(style='cursor:pointer', data-source=source.source, data-url=source.main.url).main-news
 						section
 							section(style='position:relative').hover-board
 								img(src=source.main.images.thumb)
@@ -29,7 +30,7 @@ block content
 				section.news-section-header
 					img(src='/images/' + source.logo, style='height:33px')
 				ul
-					li(style='cursor:pointer', data-article=source.main.article).main-news
+					li(style='cursor:pointer', data-source=source.source, data-url=source.main.url).main-news
 						section
 							section(style='position:relative').hover-board
 								img(src=source.main.images.thumb)
