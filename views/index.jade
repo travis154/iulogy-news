@@ -3,18 +3,17 @@ extends layout
 block content
 	section#stuff(style='margin-left:0;width:470px;').span6
 		-each source,i in column1
-			section.news-section
+			section.news-section(data-dv=source.source_dv, data-en=source.source, class=(source.hide? 'hide': ''))
 				section.news-section-header
 					img(src='/images/' + source.logo, style='height:33px')
 				ul
-					-console.log(source)
 					li(style='cursor:pointer', data-source=source.source, data-url=source.main.url).main-news
 						section
 							section(style='position:relative').hover-board
 								img(src=source.main.images.thumb)
 								h1.heading3=source.main.title
 					-each news, i in source.others
-						-_class = i > 4 ? "hide" : ""; console.log(news);
+						-_class = i > 4 ? "hide" : ""; 
 							li.news-item(class=_class)
 								-var img = news.images.sizes ? news.images.sizes[3].source : ""
 									div(data-img=img, data-source=source.source, data-url=news.url).row.sub-news
@@ -26,7 +25,7 @@ block content
 					span އިތުރު ސުރުޚީތައް
 	section#stuff2(style='margin-left:0;float:right;width:470px;').span6
 		-each source,i in column2
-			section.news-section
+			section.news-section(data-dv=source.source_dv, , data-en=source.source, class=(source.hide? 'hide': ''))
 				section.news-section-header
 					img(src='/images/' + source.logo, style='height:33px')
 				ul
@@ -36,7 +35,7 @@ block content
 								img(src=source.main.images.thumb)
 								h1.heading3=source.main.title
 					-each news, i in source.others
-						-_class = i > 4 ? "hide" : ""; console.log(news);
+						-_class = i > 4 ? "hide" : ""; 
 							li.news-item(class=_class)
 								-var img = news.images.sizes ? news.images.sizes[3].source : ""
 									div(data-img=img, data-source=source.source, data-url=news.url).row.sub-news

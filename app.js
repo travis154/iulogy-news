@@ -4,8 +4,6 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
   , jade_browser = require('jade-browser')
@@ -24,6 +22,7 @@ app.configure(function(){
   app.use(express.favicon());
   //app.use(express.logger('dev'));
   app.use(express.bodyParser());
+  app.use(express.cookieParser("traversable wormholes"));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
@@ -35,6 +34,22 @@ app.configure('development', function(){
 });
 
 app.get('/', function(req, res){
+	var hidden_sources = req.cookies.hidden_sources ? JSON.parse(req.cookies.hidden_sources) : {};
+	var map = {
+		"sun": "ސަން",
+		"haveeru": "ހަވީރު",
+		"mvyouth": "އެމްވީ ޔޫތު",
+		"mvexposed": "އެމްވީ އެކްސްޕޯސްޑ",
+		"vmedia": "ވީ މީޑިއާ",
+		"raajje": "ރާއްޖެ",
+		"dhitv": "ދިޓީވީ",
+		"adduonline": "އައްޑޫ އޮންލައިން",
+		"newdhivehiobserver": "ނިއު ދިވެހި އޮބްސާވަރ",
+		"police": "ޕޮލިސް",
+		"fanvai": "ފަންވަތް",
+		"dhiislam": "ދި އިސްލާމް",
+		"minivannews": "މިނިވަން"
+	}
 	getData(req, function(data){
 		var column = 1;
 		var column1 = [];
@@ -64,11 +79,12 @@ app.get('/', function(req, res){
 			}else{
 			
 			}
+			var hide = source in hidden_sources;
 			if(column == 1){
-				column2.push({source:source, main:main, others:src, logo:source + ".png"});
+				column2.push({source:source, main:main, others:src, logo:source + ".png", source_dv:map[source], hide:hide});
 				column = 2;
 			}else{
-				column1.push({source:source, main:main, others:src, logo:source + ".png"});
+				column1.push({source:source, main:main, others:src, logo:source + ".png", source_dv:map[source], hide:hide});
 				column = 1;
 			}
 		}
@@ -104,7 +120,26 @@ Array.prototype.clean = function(deleteValue) {
   }
   return this;
 };
+function in_array (needle, haystack, argStrict) {
+  var key = '',
+    strict = !! argStrict;
 
+  if (strict) {
+    for (key in haystack) {
+      if (haystack[key] === needle) {
+        return true;
+      }
+    }
+  } else {
+    for (key in haystack) {
+      if (haystack[key] == needle) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
 function getData(req,fn){
 	var cmd;
 	client.smembers('articles::sources', function(err, sources){

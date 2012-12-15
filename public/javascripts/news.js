@@ -36,6 +36,23 @@ $(function(){
 			self.parent().parent().find('.hide').removeClass('hide');
 		})
 	});
+	$('body').on('click', '.hide-source', function(){
+		var self = $(this);
+		var source = self.attr('data-source-en');
+		var hidden_sources = $.cookie('hidden_sources') != null ? JSON.parse($.cookie('hidden_sources')) : {};
+		if(self.hasClass('active')){
+			//add source
+			hidden_sources[source] = 1;
+			$("[data-en='"+source+"']").addClass('hide');
+			
+		}else{
+			//remove source
+			delete hidden_sources[source];
+			$("[data-en='"+source+"']").removeClass('hide');
+		}
+		//set cookie
+		$.cookie("hidden_sources", JSON.stringify(hidden_sources), { expires: 365 });
+	});
 	$('body').on('click', '.main-news', function(){
 		var self = $(this);
 		var toggle = self.hasClass('expanded');
@@ -53,7 +70,22 @@ $(function(){
 			self.addClass('expanded');
 		});
 	});
-	
+	//read cookie, create if not found
+	var hidden_sources = $.cookie('hidden_sources') ? JSON.parse($.cookie('hidden_sources')) : {};
+	var sources = $(".news-section").map(function(){ 
+		return {
+			source_dv: $(this).attr("data-dv"), 
+			source_en: $(this).attr("data-en"),
+			hide: $(this).attr("data-en") in hidden_sources
+		} 
+	})
+	$("#options").popover({
+		html:true, 
+		title: '<div style="text-align:right;">ސޯސްތައް</div>', 
+		placement:'bottom',
+		content:jade.render('options-sources',{sources:sources})
+	});
+
 });
 
 function getArticle(source, url, fn){
